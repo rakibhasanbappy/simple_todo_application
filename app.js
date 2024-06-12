@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const serveStatic = require("serve-static");
 const todoHandler = require("./routeHandler/todoHandler");
 
 dotenv.config();
@@ -8,6 +9,7 @@ dotenv.config();
 // express app initialization
 const app = express();
 app.use(express.json());
+app.use(serveStatic("static"));
 
 // database connection with mongoose
 mongoose

@@ -7,7 +7,8 @@ const router = express.Router();
 // GET all the todos
 router.get("/", async (req, res) => {
   try {
-    const data = await Todo.find({ status: "active" });
+    const data = await Todo.find();
+    // const data = await Todo.find({ status: "active" });
     res.status(200).json({
       result: data,
       message: "Query executed successfully!!",
@@ -70,7 +71,7 @@ router.put("/:id", async (req, res) => {
       { _id: req.params.id },
       {
         $set: {
-          status: "active",
+          status: req.body.status,
         },
       }
     );
